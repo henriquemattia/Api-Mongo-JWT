@@ -1,4 +1,4 @@
-import database from "../database";
+import mongoose from "mongoose";
 
-const UserSchema = new database
+const UserSchema = new database.Schema({})
 a
