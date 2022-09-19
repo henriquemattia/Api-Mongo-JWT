@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose from 'mongoose'
 
 mongoose.connect("mongodb+srv://henriquemattia:paoseco8@cluster0.w5jru7g.mongodb.net/?retryWrites=true&w=majority", {}, (error)=>{
     if (error){
@@ -6,7 +6,7 @@ mongoose.connect("mongodb+srv://henriquemattia:paoseco8@cluster0.w5jru7g.mongodb
         console.log(error);
         return
     }
-    console.log("coneção efetuada com sucesso");
+    console.log("Conecção efetuada com sucesso");
 });
 
 // mongoose.Promise = global.Promise;
