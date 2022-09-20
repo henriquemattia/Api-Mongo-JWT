@@ -1,5 +1,7 @@
 import express from 'express'
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
+import authConfig from '../config/auth.json'
 
 import User from '../models/User.js'
 
@@ -47,8 +49,12 @@ router.post("/autenticacao", async(req, res)=>{
 
     user.password = undefined
 
+    const token = jwt.sign({id: user.id, name: user.name}, authConfig.secret, {expiresIn: 86400})
 
-    return res.json(user)
+    return res.json({
+        user,
+        token
+    })
 })
 
 export default router 
