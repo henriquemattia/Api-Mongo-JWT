@@ -1,3 +1,5 @@
+import jwt from 'jsonwebtoken'
+
 export default (req, res, next) =>{
     console.log("middleware");
     const authHeader = req.headers.authorization
@@ -19,7 +21,25 @@ export default (req, res, next) =>{
         })
     }
 
-    console.log(authHeader);
+    const [sheme, token] = parts
 
-    next()
+    if(sheme.indexOf("Bearer") !== 0){
+        return res.status(401).json({
+            error: true,
+            message: "Token mal formatado"
+        })
+    }
+
+    jwt.verify(token, process.env.API_SECRET, (err, decoded)=>{
+        console.log(err);
+        console.log(decoded);
+
+        if(err){
+            return res.status(401).json({
+                error: true,
+                message: "Token inválido/expirado"
+            })
+        }
+        return next()
+    })
 }
