@@ -9,6 +9,16 @@ export default (req, res, next) =>{
         })
     }
 
+
+    const parts = authHeader.split(" ")
+
+    if(parts.length !== 2){
+        return res.status(401).json({
+            error: true,
+            message: "Tipo de token inválido!"
+        })
+    }
+
     console.log(authHeader);
 
     next()
