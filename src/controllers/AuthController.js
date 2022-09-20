@@ -23,4 +23,12 @@ router.post("/register", async(req, res)=>{
     })
 })
 
+router.post("/autenticacao", async(req, res)=>{
+    const {email, password} = req.body
+    const possibleUser = User.findOne({email})
+    console.log(possibleUser);
+
+    return res.json(possibleUser)
+})
+
 export default router
