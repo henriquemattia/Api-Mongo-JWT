@@ -25,10 +25,17 @@ router.post("/register", async(req, res)=>{
 
 router.post("/autenticacao", async(req, res)=>{
     const {email, password} = req.body
-    const possibleUser = User.findOne({email})
-    console.log(possibleUser);
+    const possibleUser = await User.findOne({ email })
+
+    if(!possibleUser){
+        return res.status(400).json({
+            error: true,
+            message: "Usuário nao encontrado!"
+        })
+    }
+
 
     return res.json(possibleUser)
 })
 
-export default router
+export default router 
