@@ -30,7 +30,7 @@ export default (req, res, next) =>{
         })
     }
 
-    jwt.verify(token, process.env.API_SECRET, (err, decoded)=>{
+    return jwt.verify(token, process.env.API_SECRET, (err, decoded)=>{
         console.log(err);
         console.log(decoded);
 
@@ -40,6 +40,10 @@ export default (req, res, next) =>{
                 message: "Token inválido/expirado"
             })
         }
+
+ 
+        req.userLogged = decoded
+
         return next()
     })
 }
