@@ -32,7 +32,7 @@ router.post("/register", async(req, res)=>{
     const user = await User.create(req.body)
     user.password = undefined
 
-    return res.json({
+    return res.json({ 
         user,
         token: genereteToken(user)
     })
