@@ -7,17 +7,16 @@ import User from '../models/User.js'
 const router = express.Router()
 
 const genereteToken =(user ={}) =>{
-    const token = jwt.sign({
+   return jwt.sign({
         id: user.id, 
         name: user.name
     }, process.env.API_SECRET, {
-            expiresIn: 86400})
-
-    return res.json({
-        user,
-        token
-    })
+            expiresIn: 86400
+        }
+    )
 }
+
+ 
 
 router.post("/register", async(req, res)=>{
 
@@ -30,12 +29,12 @@ router.post("/register", async(req, res)=>{
         })
     }
 
-    const Users = await User.create(req.body)
+    const user = await User.create(req.body)
+    user.password = undefined
 
     return res.json({
-        error: false,
-        message: "Register with success!",
-        data: Users
+        user,
+        token: genereteToken(user)
     })
 })
 
