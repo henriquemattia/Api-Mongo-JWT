@@ -2,6 +2,9 @@ import express from "express";
 import authController from './controllers/AuthController.js';
 import database from "./database/index.js";
 
+import dotenv from "dotenv-safe"
+dotenv.config()
+
 const app = express()
 
 app.use(express.json())
