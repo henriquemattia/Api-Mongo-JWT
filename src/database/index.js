@@ -1,6 +1,11 @@
 import mongoose from 'mongoose'
+import dotenv from "dotenv-safe"
+dotenv.config()
 
-mongoose.connect("mongodb+srv://henriquemattia:paoseco8@cluster0.w5jru7g.mongodb.net/?retryWrites=true&w=majority", {}, (error)=>{
+
+const mongoDB = 
+
+mongoose.connect(process.env.MONGO_URI, {}, (error)=>{
     if (error){
         console.log("falha ao conectar com o banco de dados");
         console.log(error);

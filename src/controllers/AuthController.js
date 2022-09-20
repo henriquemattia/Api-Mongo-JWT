@@ -9,7 +9,7 @@ const router = express.Router()
 const genereteToken =(user ={}) =>{
    return jwt.sign({
         id: user.id, 
-        name: user.name
+        name: user.username
     }, process.env.API_SECRET, {
             expiresIn: 86400
         }
@@ -38,7 +38,7 @@ router.post("/register", async(req, res)=>{
     })
 })
 
-router.post("/autenticacao", async(req, res)=>{
+router.post("/login", async(req, res)=>{
     const {email, password} = req.body
     const user = await User.findOne({ email }).select("+password")
 
@@ -65,6 +65,7 @@ router.post("/autenticacao", async(req, res)=>{
         user,
         token: genereteToken(user)
     })
+    // return res.status(200)
 })
 
 export default router 
