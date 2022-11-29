@@ -10,7 +10,7 @@ Simples api com uma autentiação JWT e criptografia de senha Bcrypt, utilizando
 
 ## Intruções para uso  
 ----
-Primeiro crie um arquivo ".env" com base no arquivo ".env.exemple" disponibilizado no código, e preencha-o para utilizar.
+Primeiro crie um arquivo ".env" com base no arquivo ".env.example" disponibilizado no código, e preencha-o para utilizar.
 
 #### Feito isso:
 
